@@ -31,7 +31,7 @@
 
                             <div class="col-span-12">
                                 <label for="identity" class="block text-sm font-medium text-gray-700">Identidad</label>
-                                <input id="identity" name="identity" type="number" class="form-input mt-1 block w-full" placeholder="Identidad del cliente" required>
+                                <input id="identity" name="identity" type="number" class="form-input mt-1 block w-full" placeholder="Identidad del cliente">
                             </div>
 
                             <div class="col-span-12">

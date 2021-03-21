@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PieceType;
 use App\Models\ServiceType;
+use Session;
 
 class configurationController extends Controller
 {
@@ -20,8 +21,9 @@ class configurationController extends Controller
             "name" => "required"
         ]);
 
-        auth()->user()->company->serviceTypes()->create($data);
+        $serviceType = auth()->user()->company->serviceTypes()->create($data);
 
+        Session::flash('message', $serviceType->name . ' agregado/a correctamente.');
         return redirect( route("configuracion") );
     }
 
@@ -32,13 +34,18 @@ class configurationController extends Controller
             "charge_by" => ""
         ]);
 
-        auth()->user()->company->pieceTypes()->create($data);
+        $pieceType = auth()->user()->company->pieceTypes()->create($data);
 
+        Session::flash('message', $pieceType->name . ' agregado/a correctamente.');
         return redirect( route("configuracion") );
     }
 
     public function editPieceType (PieceType $pieceType) {
         return view("configuration.updatePieceType", compact("pieceType"));
+    }
+
+    public function editServiceType (ServiceType $serviceType) {
+        return view("configuration.updateServiceType", compact("serviceType"));
     }
 
     public function updatePieceType (Request $request, PieceType $pieceType) {
@@ -50,6 +57,24 @@ class configurationController extends Controller
 
         $pieceType->update($data);
 
+        Session::flash('message', $pieceType->name . ' actualizado/a correctamente.');
         return redirect( route("configuracion") );
     }
+
+    public function updateServiceType (Request $request, ServiceType $serviceType) {
+        $data = $request->validate([
+            "name" => "required"
+        ]);
+
+        $serviceType->update($data);
+
+        Session::flash('message', $serviceType->name . ' actualizado/a correctamente.');
+        return redirect( route("configuracion") );
+    }
+
+    // public function deletePieceType (PieceType $pieceType) {
+    //     //$pieceType->delete();
+    //     Session::flash('message', 'Tipo de Pieza eliminada correctamente.');
+    //     return redirect( route("configuracion") );
+    // }
 }

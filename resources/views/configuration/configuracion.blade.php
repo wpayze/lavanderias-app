@@ -5,6 +5,19 @@
         </h2>
     </x-slot>
 
+    @if (session()->has('message'))
+    <div class="max-w-7xl mx-auto">
+        <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
+        <div class="flex">
+            <div>
+            <p class="text-sm">{{ session('message') }}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    @endif
+
+
     <div class="max-w-7xl mx-auto mt-9 rounded shadow-xl bg-white p-4">
         <h1 class="text-3xl">Empresa: {{ auth()->user()->company->name }}</h1>
     </div>
@@ -16,7 +29,9 @@
             <br>
             <ul class="list-disc">
                 @foreach ($service_types as $service_type)
-                    <li class="text-lg"><strong>{{ $service_type->name }}</strong></li>
+                    <li>
+                        <a class="text-lg font-bold hover:text-blue-500" href="{{ route('editServiceType', $service_type->id) }}">{{ $service_type->name }}</a>
+                    </li>
                 @endforeach
             </ul>
         </div>

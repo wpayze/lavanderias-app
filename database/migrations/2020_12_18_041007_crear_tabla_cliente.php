@@ -22,7 +22,7 @@ class CrearTablaCliente extends Migration
             $table->string("name");
             $table->string("telephone")->nullable();
             $table->string("email")->nullable();
-            $table->string("identity")->unique();
+            $table->string("identity")->nullable();
 
             $table->timestamps();
         });

@@ -11,8 +11,54 @@ use Illuminate\Http\Request;
 class orderController extends Controller
 {
     public function index() {
-        $orders = Order::with("client", "piecetypes", "servicetypes")->latest()->paginate(15);
-        return view("order.index", compact("orders"));
+
+        $query = request()->get("search") ? request()->get("search") : "";
+
+        if ($query) {
+
+            //dd($query);
+
+            $ordersQuery =
+            Order::with("client", "piecetypes", "servicetypes")
+            ->latest();
+
+            if ( isset($query["id"]) )
+                $ordersQuery->where("id", "=", $query["id"]);
+
+            if ( $query["state"] != "TODOS" )
+                $ordersQuery->where("state", "=", $query["state"]);
+
+            if ( isset($query["client_id"]) )
+                $ordersQuery->where("client_id", "=", $query["client_id"]);
+
+            if ( isset($query["bags"]) )
+                $ordersQuery->where("bags", "=", $query["bags"]);
+
+            if ( isset($query["entrancemin"]) )
+                $ordersQuery->where("entrance_date", ">=", $query["entrancemin"] );
+
+            if ( isset($query["entrancemax"]) )
+                $ordersQuery->where("entrance_date", "<=", $query["entrancemax"] );
+
+            if ( isset($query["endingmin"]) )
+                $ordersQuery->where("ending_date", ">=", $query["endingmin"] );
+
+            if ( isset($query["endingmax"]) )
+                $ordersQuery->where("ending_date", "<=", $query["endingmax"] );
+
+            if ( isset($query["deliverymin"]) )
+                $ordersQuery->where("delivery_date", ">=", $query["deliverymin"] );
+
+            if ( isset($query["deliverymax"]) )
+                $ordersQuery->where("delivery_date", "<=", $query["deliverymax"] );
+
+            $orders = $ordersQuery->paginate(15)->appends( request()->query() );
+
+        } else {
+            $orders = Order::with("client", "piecetypes", "servicetypes")->latest()->paginate(15);
+        }
+
+        return view("order.index", compact("orders", "query"));
     }
 
     public function create() {
@@ -24,7 +70,6 @@ class orderController extends Controller
     }
 
     public function store (Request $request) {
-
         $data = $request->validate([
             "client_id" => "required",
             "bags" => "",

@@ -9,8 +9,23 @@ use App\Models\Client;
 class clientController extends Controller
 {
     public function index () {
-        $clients = Client::ofcompany()->latest()->paginate(15);
-        return view('client.index', compact('clients'));
+
+        $paginacion = request()->get("paginacion") ? request()->get("paginacion") : 15;
+        $query = request()->get("search") ? request()->get("search") : "";
+
+        if ($query) {
+            $clients = Client::ofcompany()
+            ->where("name", "LIKE", "%$query%")
+            ->orWhere("identity", "LIKE", "%$query%")
+            ->orWhere("email", "LIKE", "%$query%")
+            ->orWhere("telephone", "LIKE", "%$query%")
+            ->paginate($paginacion)
+            ->appends( request()->query() );
+        } else {
+            $clients = Client::ofcompany()->latest()->paginate($paginacion);
+        }
+
+        return view('client.index', compact('clients', "paginacion", "query"));
     }
 
     public function create () {
@@ -20,7 +35,7 @@ class clientController extends Controller
     public function store (Request $request) {
         $data = $request->validate([
             "name" => "required",
-            "identity" => "required",
+            "identity" => "",
             "email" => "",
             "telephone" => ""
         ]);
