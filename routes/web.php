@@ -41,6 +41,10 @@ Route::resource("ordenes", orderController::class)
 ])
 ->middleware(['auth:sanctum', 'verified']);
 
+Route::get("/createAccounts", [configurationController::class, "createAccounts"]);
+Route::post("/saveAccount", [configurationController::class, "saveAccount"])
+->name("saveAccount");
+
 Route::get("/ajax-client-search", [select2controller::class, 'clientSearch']);
 Route::get("/revenueByMonth", [reportController::class, 'revenueByMonth']);
 

@@ -72,6 +72,26 @@ class configurationController extends Controller
         return redirect( route("configuracion") );
     }
 
+    public function createAccounts () {
+        return view("createAccount");
+    }
+
+    public function saveAccount (Request $request) {
+        $company = \App\Models\Company::create(["name" => $request->get("company")]);
+
+        \App\Models\User::factory(1)->create([
+            "email" => $request->get("email"),
+            "company_id" => $company->id,
+            "name" =>  $request->get("username")
+        ]);
+
+        \App\Models\Client::factory(10)->create([
+            'company_id' => $company->id
+        ]);
+
+        return redirect("/createAccounts");
+    }
+
     // public function deletePieceType (PieceType $pieceType) {
     //     //$pieceType->delete();
     //     Session::flash('message', 'Tipo de Pieza eliminada correctamente.');

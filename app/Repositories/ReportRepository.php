@@ -14,7 +14,7 @@ class ReportRepository {
         $orders  =  Order::where("entrance_date", ">=", $initialDate)
                         ->where("entrance_date", "<=", $finalDate)->count();
 
-        $new_clients =  Client::where("created_at", ">=", $initialDate)
+        $new_clients =  Client::ofcompany()->where("created_at", ">=", $initialDate)
                             ->where("created_at", "<=", $finalDate)->count();
 
         $revenue =  Order::where("entrance_date", ">=", $initialDate)
