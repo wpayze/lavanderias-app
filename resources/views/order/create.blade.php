@@ -175,7 +175,7 @@
                     $('#entrance_date').val(new Date().toDateInputValue());
                 });
 
-                <x-orderscripts />
+                <x-order-scripts />
             </script>
         @endpush
     @endonce

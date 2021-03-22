@@ -208,7 +208,7 @@
                     existingServiceTypes.push("{{$servicetype->id}}");
                 @endforeach
 
-                <x-orderscripts />
+                <x-order-scripts />
             </script>
         @endpush
     @endonce
