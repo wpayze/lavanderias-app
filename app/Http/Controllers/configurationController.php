@@ -77,6 +77,7 @@ class configurationController extends Controller
     }
 
     public function saveAccount (Request $request) {
+
         $company = \App\Models\Company::create(["name" => $request->get("company")]);
 
         \App\Models\User::factory(1)->create([
@@ -85,9 +86,13 @@ class configurationController extends Controller
             "name" =>  $request->get("username")
         ]);
 
-        \App\Models\Client::factory(10)->create([
-            'company_id' => $company->id
-        ]);
+        if ($request->get("clients")) {
+            \App\Models\Client::factory($request->get("clients"))->create([
+                'company_id' => $company->id
+            ]);
+        }
+
+
 
         return redirect("/createAccounts");
     }
