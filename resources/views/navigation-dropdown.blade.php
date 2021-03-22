@@ -170,6 +170,10 @@
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>
 
+                <x-jet-responsive-nav-link href="{{ route('configuracion') }}" :active="request()->routeIs('configuracion')">
+                    {{ __('Configuración') }}
+                </x-jet-responsive-nav-link>
+
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
