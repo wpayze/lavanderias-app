@@ -13,7 +13,7 @@ class select2controller extends Controller
         if ($request->has("q")) {
 
             $search = $request->q;
-            $clients = Client::select("id", "name")
+            $clients = Client::ofcompany()->select("id", "name")
                         ->where("name", "LIKE", "%$search%")
                         ->orWhere("identity", "LIKE", "%$search%")
                         ->orWhere("email", "LIKE", "%$search%")
