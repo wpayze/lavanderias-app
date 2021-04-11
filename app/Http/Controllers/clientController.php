@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Client;
+use Session;
 
 class clientController extends Controller
 {
@@ -40,7 +41,27 @@ class clientController extends Controller
             "telephone" => ""
         ]);
 
-        auth()->user()->company->clients()->create($data);
+        $client = auth()->user()->company->clients()->create($data);
+
+        Session::flash('message',  $client->name . ' agregado correctamente.');
+        return redirect( route("clientes") );
+    }
+
+    public function edit (Client $cliente) {
+        return view('client.edit', ["client" => $cliente]);
+    }
+
+    public function update (Request $request, Client $cliente) {
+        $data = $request->validate([
+            "name" => "required",
+            "identity" => "",
+            "email" => "",
+            "telephone" => ""
+        ]);
+
+        $cliente->update($data);
+
+        Session::flash('message',  $cliente->name . ' actualizado correctamente.');
         return redirect( route("clientes") );
     }
 }

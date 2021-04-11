@@ -27,7 +27,6 @@ class ReportRepository {
             "newClients" => $new_clients,
             "revenue" => $revenue
         ];
-
     }
 
     public function revenueByMonth () {
@@ -42,4 +41,14 @@ class ReportRepository {
         return $data;
     }
 
+    public function getMonthsWithOrders () {
+        $data =  Order::where("entrance_date", ">=", date("Y-01-01"))
+                    ->where("entrance_date", "<=", date("Y-12-31"))
+                    ->selectRaw("month(entrance_date) month")
+                    ->groupBy("month")
+                    ->orderBy("month", "desc")
+                    ->get();
+
+        return $data;
+    }
 }

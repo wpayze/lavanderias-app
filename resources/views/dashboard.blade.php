@@ -5,6 +5,26 @@
         </h2>
     </x-slot>
 
+    <div class="max-w-7xl mx-auto mt-9 bg-white ">
+        <div class="p-5">
+            <p>MES DEL REPORTE</p>
+            <form>
+                <div class="grid grid-cols-12">
+                    <div class="md:col-span-6">
+                        <select name="month" class="form-select block w-full">
+                            @foreach ($months as $month)
+                                <option value="{{$month->month}}" @if ($month->month == $currentMonth) selected @endif >{{$monthsText[$month->month]}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="md:col-span-6">
+                        <button class="w-full inline p-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 ring-blue-300 ring-offset-2" type="submit">Cargar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="grid grid-cols-12 gap-4 max-w-7xl mx-auto mt-9 ">
 
         <div class="col-span-12 sm:col-span-6 md:col-span-3 shadow-xl rounded-xl">

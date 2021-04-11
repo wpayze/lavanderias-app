@@ -6,6 +6,19 @@
     </x-slot>
 
     <div class="py-12">
+        <div class="lg:max-w-7xl mx-auto sm:px-6 lg:px-8 mb-5">
+            <div class="lg:overflow-hidden shadow-xl sm:rounded-lg">
+                @if (session()->has('message'))
+                    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
+                    <div class="flex">
+                        <div>
+                        <p class="text-sm">{{ session('message') }}</p>
+                        </div>
+                    </div>
+                    </div>
+                @endif
+            </div>
+        </div>
 
         <div class="lg:max-w-7xl mx-auto sm:px-6 lg:px-8 mb-5">
             <div class="bg-white lg:overflow-hidden shadow-xl sm:rounded-lg">
@@ -40,21 +53,12 @@
         <div class="lg:max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white lg:overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
 
-                @if (session()->has('message'))
-                    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
-                      <div class="flex">
-                        <div>
-                          <p class="text-sm">{{ session('message') }}</p>
-                        </div>
-                      </div>
-                    </div>
-                @endif
-
-                <a href="{{route('clientes.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Crear nuevo cliente</a>
-
-                {!! $clients->links() !!}
-
-                <br>
+                <div class="mt-1">
+                    <a href="{{route('clientes.create')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3">Crear nuevo cliente</a>
+                </div>
+                <div class="mt-4">
+                    {!! $clients->links() !!}
+                </div>
 
                 <table class="table-auto w-full bg-white mt-4">
                     <thead>
@@ -63,6 +67,7 @@
                             <th class="px-4 py-2">Nombre</th>
                             <th class="px-4 py-2">Tel&eacute;fono</th>
                             <th class="px-4 py-2">Correo Electr&oacute;nico</th>
+                            <th class="px-4 py-2">...</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,6 +77,11 @@
                                 <td class="border px-4 py-2">{{$client->name}}</td>
                                 <td class="border px-4 py-2">{{$client->telephone}}</td>
                                 <td class="border px-4 py-2">{{$client->email}}</td>
+                                <td class="border px-4 py-2">
+                                    <a href="{{ route('clientes.edit', $client->id) }}">
+                                        <i class="fas fa-pencil-alt cursor-pointer	text-blue-600 mx-1"></i>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

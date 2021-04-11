@@ -14,13 +14,16 @@ class dashboardController extends Controller
     }
 
     public function dashboard () {
+        $currentMonth = request()->get("month") ? request()->get("month") : "m";
 
-        $initialDate = date('Y-m-01');
-        $finalDate = date('Y-m-t');
+        $initialDate = date('Y-'.$currentMonth.'-01');
+        $finalDate = date('Y-'.$currentMonth.'-t');
 
-        $report = $this->reportRepository->revenueByMonth();
+        $monthsText = ["Todos los Meses", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+        $months = $this->reportRepository->getMonthsWithOrders();
         $report = $this->reportRepository->getDashboardReport($initialDate,$finalDate);
 
-        return view('dashboard', compact("report") );
+        return view('dashboard', compact("report", "months", "monthsText", "currentMonth") );
     }
 }

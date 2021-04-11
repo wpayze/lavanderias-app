@@ -15,13 +15,13 @@
                 <div id="filtros" class="px-4 py-4 hidden">
                     <form>
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-2">
-                            <div class="col-span-3">
+                            <div class="md:col-span-3">
                                 <label class="block">
                                     <span class="text-gray-700">ID</span>
                                     <input type="search" name="search[id]" @if( isset($query['id']) ) value="{{$query['id']}}" @endif class="form-input mt-1 block w-full" placeholder="">
                                 </label>
                             </div>
-                            <div class="col-span-3">
+                            <div class="md:col-span-3">
                                 <label class="block">
                                     <span class="text-gray-700">Estado</span>
                                     <select name="search[state]" class="mt-1 form-select block w-full">
@@ -33,22 +33,22 @@
                                     </select>
                                 </label>
                             </div>
-                            <div class="col-span-3">
+                            <div class="md:col-span-3">
                                 <span class="text-gray-700 block">Cliente</span>
                                 <select id="clientsearch" name="search[client_id]" style="width: 100%"></select>
                             </div>
-                            <div class="col-span-3">
+                            <div class="md:col-span-3">
                                 <label class="block">
                                     <span class="text-gray-700">Bolsas</span>
                                     <input type="search" @if( isset($query['bags']) ) value="{{$query['bags']}}" @endif name="search[bags]" class="form-input mt-1 block w-full" placeholder="">
                                 </label>
                             </div>
 
-                            <div class="col-span-12">
+                            <div class="md:col-span-12">
                                 <br>
                             </div>
 
-                            <div class="col-span-4 border-2 border-gray-300 p-2">
+                            <div class="md:col-span-4 border-2 border-gray-300 p-2">
                                 <span class="text-gray-700 block text-center">Fecha de Entrada</span>
 
                                 <span class="text-gray-700 font-bold">Inicio:</span>
@@ -57,7 +57,7 @@
                                 <span class="text-gray-700 font-bold">Final:</span>
                                 <input type="date" name="search[entrancemax]" @if( isset($query['entrancemax']) ) value="{{$query['entrancemax']}}" @endif>
                             </div>
-                            <div class="col-span-4 border-2 border-gray-300 p-2">
+                            <div class="md:col-span-4 border-2 border-gray-300 p-2">
                                 <span class="text-gray-700 block text-center">Fecha de Finalizaci&oacute;n</span>
                                 <span class="text-gray-700 font-bold">Inicio:</span>
                                 <input type="date" name="search[endingmin]" @if( isset($query['endingmin']) ) value="{{$query['endingmin']}}" @endif>
@@ -65,7 +65,7 @@
                                 <span class="text-gray-700 font-bold">Final:</span>
                                 <input type="date" name="search[endingmax]" @if( isset($query['endingmax']) ) value="{{$query['endingmax']}}" @endif>
                             </div>
-                            <div class="col-span-4 border-2 border-gray-300 p-2">
+                            <div class="md:col-span-4 border-2 border-gray-300 p-2">
                                 <span class="text-gray-700 block text-center">Fecha de Entrega</span>
                                 <span class="text-gray-700 font-bold">Inicio:</span>
                                 <input type="date" name="search[deliverymin]" @if( isset($query['deliverymin']) ) value="{{$query['deliverymin']}}" @endif>
@@ -74,7 +74,7 @@
                                 <input type="date" name="search[deliverymax]" @if( isset($query['deliverymax']) ) value="{{$query['deliverymax']}}" @endif>
                             </div>
 
-                            <div class="col-span-12 text-center">
+                            <div class="md:col-span-12 text-center">
                                 <button id="filtrarBtn" class="w-full inline p-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring-2 ring-blue-300 ring-offset-2" type="submit">Filtrar</button>
                             </div>
                         </div>
