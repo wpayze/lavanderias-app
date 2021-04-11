@@ -44,10 +44,6 @@
                                 </label>
                             </div>
 
-                            <div class="md:col-span-12">
-                                <br>
-                            </div>
-
                             <div class="md:col-span-4 border-2 border-gray-300 p-2">
                                 <span class="text-gray-700 block text-center">Fecha de Entrada</span>
 

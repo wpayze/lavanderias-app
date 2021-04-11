@@ -6,9 +6,9 @@
     </x-slot>
 
     <div class="py-12">
+        @if (session()->has('message'))
         <div class="lg:max-w-7xl mx-auto sm:px-6 lg:px-8 mb-5">
             <div class="lg:overflow-hidden shadow-xl sm:rounded-lg">
-                @if (session()->has('message'))
                     <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
                     <div class="flex">
                         <div>
@@ -16,9 +16,9 @@
                         </div>
                     </div>
                     </div>
-                @endif
             </div>
         </div>
+        @endif
 
         <div class="lg:max-w-7xl mx-auto sm:px-6 lg:px-8 mb-5">
             <div class="bg-white lg:overflow-hidden shadow-xl sm:rounded-lg">
