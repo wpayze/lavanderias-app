@@ -26,7 +26,9 @@ let addServiceType = () => {
     let text = service_type_select[index].text;
     let value = service_type_select.value;
 
-    if (existingServiceTypes.includes(value)) {
+    service_type_select.selectedIndex = 0;
+
+    if (existingServiceTypes.includes(value) || value == 0) {
         return;
     }
 
@@ -59,7 +61,9 @@ let addPieceType = () => {
 
     let value = piece_type_select.value;
 
-    if (existingPieceTypes.includes(value)) {
+    piece_type_select.selectedIndex = 0;
+
+    if (existingPieceTypes.includes(value) || value == 0) {
         return;
     }
 

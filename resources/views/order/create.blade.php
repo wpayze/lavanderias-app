@@ -79,22 +79,25 @@
 
                             @if (count($service_types) > 0)
                                 <div class="col-span-12">
-                                    <div class="grid grid-cols-12 gap-2">
-                                        <div class="col-span-10">
+                                    {{-- <div class="grid grid-cols-12 gap-2">
+                                        <div class="col-span-10"> --}}
                                             <label for="service_type" class="block text-sm font-medium text-gray-700">Agregar Tipo de Servicio</label>
-                                            <select id="service_type" class="mt-1 form-select block w-full">
+                                            <select id="service_type" onchange="addServiceType()" class="mt-1 form-select block w-full">
+                                                <option value="0">
+                                                    Elija un tipo de servicio...
+                                                </option>
                                                 @foreach ($service_types as $service_type)
                                                     <option value="{{$service_type->id}}">{{$service_type->name}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        {{-- </div> --}}
 
-                                        <div class="col-span-2">
+                                        {{-- <div class="col-span-2">
                                             <button onclick="addServiceType()" type="button" style="margin-top:22px;" class="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
                                                 <strong>+</strong>
                                             </button>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div id="service_types_div" class="mt-5">
                                     </div>
@@ -112,22 +115,25 @@
 
                             @if (count($piece_types) > 0)
                                 <div class="col-span-12">
-                                    <div class="grid grid-cols-12 gap-2">
-                                        <div class="col-span-10">
+                                    {{-- <div class="grid grid-cols-12 gap-2">
+                                        <div class="col-span-10"> --}}
                                             <label for="piece_type" class="block text-sm font-medium text-gray-700">Agregar Tipo de Pieza</label>
-                                            <select id="piece_type" class="mt-1 form-select block w-full">
+                                            <select id="piece_type" class="mt-1 form-select block w-full" onchange="addPieceType()">
+                                                <option value="0">
+                                                    Elija un tipo de pieza...
+                                                </option>
                                                 @foreach ($piece_types as $piece_type)
                                                     <option value="{{$piece_type->id}}" price="{{$piece_type->price}}" charge_by="{{$piece_type->charge_by}}">{{$piece_type->name}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        {{-- </div> --}}
 
-                                        <div class="col-span-2">
+                                        {{-- <div class="col-span-2">
                                             <button type="button" onclick="addPieceType()" style="margin-top:22px;" class="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
                                                 <strong>+</strong>
                                             </button>
-                                        </div>
-                                    </div>
+                                        </div> --}}
+                                    {{-- </div> --}}
                                     <div id="piece_types_div" class="mt-5">
                                     </div>
                                 </div>
