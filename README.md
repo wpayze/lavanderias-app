@@ -1,2 +1,2 @@
 # lavanderias-app
-Sistema para lavanderias en laravel.
+Sistema para lavanderias en laravel!
